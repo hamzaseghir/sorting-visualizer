@@ -2,24 +2,24 @@ import { useEffect, useState } from 'react';
 import './SortingVisualizer.css';
 import React from 'react';
 
+function generateArray(min, max, number){
+    let array = [];
+    for(let i = 0; i< number; i++){
+        array.push(generateNumber(min,max))
+    }
+    return array;
+}
+
 function SortingVisualizer(){
-
+    const [min, max, number] = [1, 500, 10];
     let [values, setValues] = useState([]);
-    //values = generateArray(1,500);
-
-    console.log(values);
 
     useEffect(() => {
-        console.log("render");   
-        setValues(generateArray(1,500));
-    }, [values])
+        setValues(generateArray(min, max, number));
+    }, [min, max, number])
 
-    function generateArray(min, max){
-        let array = [];
-        for(let i = 0; i< 10; i++){
-            array.push(generateNumber(min,max))
-        }
-        return array;
+    const refreshArray = () => {
+        setValues(generateArray(min,max, number));
     }
 
     return (
@@ -36,7 +36,7 @@ function SortingVisualizer(){
         </section>
         <div>
             <p>Nouveau Tableau</p>
-            <button onClick={() => values = generateArray(1,500)}>
+            <button onClick={refreshArray}>
             Cliquez ici
             </button>
         </div>
