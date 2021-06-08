@@ -1,0 +1,12 @@
+.array-container{
+    display:flex;
+    justify-content: center;
+    justify-self: center;
+}
+
+.array-value{
+    background-color: pink;
+    width: 10px;
+    display:inline-block;
+    margin:1px;
+}
