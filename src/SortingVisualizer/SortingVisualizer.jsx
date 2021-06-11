@@ -33,7 +33,7 @@ function SortingVisualizer(){
     const bubbleSorting = () => {
         let sortedArray = values.sort((a,b) => a- b);
         let bubbleSortArray = bubbleSort(values);
-        console.log(arrayAreEqual(sortedArray, bubbleSort));
+        console.log(arrayAreEqual(sortedArray, bubbleSortArray));
     }
 
     const refreshArray = () => {
