@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './SortingVisualizer.css';
 import React from 'react';
 import {mergeSort} from '../sortingAlgorithms/mergeSort';
+import bubbleSort from '../sortingAlgorithms/bubbleSort';
 
 function generateArray(min, max, number){
     let array = [];
@@ -22,11 +23,17 @@ function SortingVisualizer(){
     }, [min, max, number])
 
 
-    const sorting = () => {
+    const mergeSorting = () => {
         // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
         let sortedArray = values.sort((a,b) => a- b);
         let mergeSortArray = mergeSort(values);
         console.log(arrayAreEqual(sortedArray, mergeSortArray));
+    }
+
+    const bubbleSorting = () => {
+        let sortedArray = values.sort((a,b) => a- b);
+        let bubbleSortArray = bubbleSort(values);
+        console.log(arrayAreEqual(sortedArray, bubbleSort));
     }
 
     const refreshArray = () => {
@@ -47,10 +54,10 @@ function SortingVisualizer(){
         </section>
         <div>
             <button onClick={refreshArray}>Nouveau tableau</button>
-            <button onClick={sorting}>Merge Sort</button>
+            <button onClick={mergeSorting}>Merge Sort</button>
             <button onClick={() => console.log("Quick Sort")}>Quick Sort</button>
             <button onClick={() => console.log("Heap Sort")}>Heap Sort</button>
-            <button onClick={() => console.log("Bubble Sort")}>Bubble Sort</button>
+            <button onClick={bubbleSorting}>Bubble Sort</button>
         </div>
     </> 
     ); 
