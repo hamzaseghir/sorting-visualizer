@@ -35,10 +35,11 @@ function SortingVisualizer(){
         })}
         </section>
         <div>
-            <p>Nouveau Tableau</p>
-            <button onClick={refreshArray}>
-            Cliquez ici
-            </button>
+            <button onClick={refreshArray}>Nouveau tableau</button>
+            <button onClick={() => console.log("Merge Sort")}>Merge Sort</button>
+            <button onClick={() => console.log("Quick Sort")}>Quick Sort</button>
+            <button onClick={() => console.log("Heap Sort")}>Heap Sort</button>
+            <button onClick={() => console.log("Bubble Sort")}>Bubble Sort</button>
         </div>
     </> 
     ); 
