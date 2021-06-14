@@ -43,16 +43,16 @@ function mergeUtil(baseArray, startIdx, endIdx, anim, auxArray){
 function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
 
     let i = startIdx; // first index
-    let j = half+1; // second index
+    let j = middleIdx+1; // second index
     let k = startIdx; // base array index
 
-    while(i < half && j < endIdx){
+    while(i < middleIdx && j < endIdx){
         // valeurs qu'on compare
         // chgt couleur
         anim.push([i,j]);
         // retour au couleur de base
         anim.push([i,j]);
-        if(first[i] < second[j]){
+        if(baseArray[i] < baseArray[j]){
             
             baseArray[k++] = auxArray[i++];
         }     

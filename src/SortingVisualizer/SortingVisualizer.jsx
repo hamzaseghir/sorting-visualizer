@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './SortingVisualizer.css';
 import React from 'react';
-import {mergeSort} from '../sortingAlgorithms/mergeSort';
+import {getMergeSortAnim} from '../sortingAlgorithms/mergeSort';
 import bubbleSort from '../sortingAlgorithms/bubbleSort';
 
 function generateArray(min, max, number){
@@ -24,10 +24,6 @@ function SortingVisualizer(){
 
 
     const mergeSorting = () => {
-        // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-        let sortedArray = values.sort((a,b) => a- b);
-        let mergeSortArray = mergeSort(values);
-        console.log(arrayAreEqual(sortedArray, mergeSortArray));
     }
 
     const bubbleSorting = () => {
