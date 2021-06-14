@@ -24,21 +24,23 @@
 
 export function getMergeSortAnim(array){
     const anim = [];
-    mergeSort(array,0, array.length-1, anim);
+    // tableau auxiliaire avec valeur de baseArray
+    const auxArray = [...array];
+    mergeUtil(array,0, array.length-1, anim, auxArray);
     return anim;
 }
 
 // Partie recursive du mergeSort, correspond à la ligne 4 à 6
-function mergeUtil(baseArray, startIdx, endIdx, anim){ 
+function mergeUtil(baseArray, startIdx, endIdx, anim, auxArray){ 
     if ((startIdx - endIdx) <= 1) return;
     const half = Math.round((startIdx + endIdx) / 2);
-    mergeUtil(baseArray, startIdx, half, half, anim);
-    mergeUtil(baseArray, half+1, endIdx, half, anim);
-    mergeSort(baseArray, startIdx, endIdx, half, anim);
+    mergeUtil(baseArray, startIdx, half, half, anim, auxArray);
+    mergeUtil(baseArray, half+1, endIdx, half, anim, auxArray);
+    mergeSort(baseArray, startIdx, endIdx, half, anim, auxArray);
 }
 
 // Peuple l'array d'animation
-function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim ){
+function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
 
     let i = startIdx; // first index
     let j = half+1; // second index
@@ -52,20 +54,19 @@ function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim ){
         anim.push([i,j]);
         if(first[i] < second[j]){
             
-            baseArray[k] = baseArray[i++];
+            baseArray[k++] = auxArray[i++];
         }     
         else{
-            baseArray[k] = baseArray[j++];
+            baseArray[k++] = auxArray[j++];
         }    
-        k++;
     }
 
-    while(i < first.length){
-        arr.push(first[i++]);
+    while(i <= middleIdx){
+        // on remplace la valeur de baseArray à l'index k par celle de l'array auxiliaire(valeurs de base) à l'index i 
+        baseArray[k++] = auxArray[i++];
     } 
 
-    while(j < second.length) {
-        arr.push(second[j++]);
+    while(j <= endIdx) {
+        baseArray[k++] = auxArray[j++];
     }
-    return arr;
 }
