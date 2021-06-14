@@ -26,17 +26,20 @@ export function getMergeSortAnim(array){
     const anim = [];
     // tableau auxiliaire avec valeur de baseArray
     const auxArray = [...array];
-    mergeUtil(array,0, array.length-1, anim, auxArray);
+    console.log(auxArray);
+    mergeUtil(array, 0, array.length-1, anim, auxArray);
+    console.log(anim);
     return anim;
 }
 
 // Partie recursive du mergeSort, correspond à la ligne 4 à 6
 function mergeUtil(baseArray, startIdx, endIdx, anim, auxArray){ 
-    if ((startIdx - endIdx) <= 1) return;
-    const half = Math.round((startIdx + endIdx) / 2);
-    mergeUtil(baseArray, startIdx, half, half, anim, auxArray);
-    mergeUtil(baseArray, half+1, endIdx, half, anim, auxArray);
-    mergeSort(baseArray, startIdx, endIdx, half, anim, auxArray);
+    if ((startIdx == endIdx)) return;
+    const middleIdx = Math.floor((startIdx + endIdx) / 2);
+    console.log(startIdx, endIdx, middleIdx);
+    mergeUtil(baseArray, startIdx, middleIdx,  anim, auxArray);
+    //mergeUtil(baseArray, middleIdx+1, endIdx,  anim, auxArray);
+    mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray);
 }
 
 // Peuple l'array d'animation
@@ -52,11 +55,12 @@ function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
         anim.push([i,j]);
         // retour au couleur de base
         anim.push([i,j]);
-        if(baseArray[i] < baseArray[j]){
+        if(auxArray[i] < auxArray[j]){
             
             baseArray[k++] = auxArray[i++];
         }     
         else{
+
             baseArray[k++] = auxArray[j++];
         }    
     }

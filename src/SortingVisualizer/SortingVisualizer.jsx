@@ -24,6 +24,8 @@ function SortingVisualizer(){
 
 
     const mergeSorting = () => {
+        const anim = getMergeSortAnim(values);
+        console.log(anim);
     }
 
     const bubbleSorting = () => {
