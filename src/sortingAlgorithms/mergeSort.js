@@ -41,10 +41,12 @@ function mergeUtil(baseArray, startIdx, endIdx, anim, auxArray){
 
 // Peuple l'array d'animation
 function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
-
+    
+    // ligne 9 à 18
     let i = startIdx; // first index
     let j = middleIdx+1; // second index
     let k = startIdx; // base array index
+    // console.log(startIdx, endIdx);
 
     while(i < middleIdx && j < endIdx){
         // valeurs qu'on compare
@@ -54,15 +56,16 @@ function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
         anim.push([i,j]);
         // on doit effectuer l'animation de swap dans le if else
         if(auxArray[i] < auxArray[j]){
-            anim.push([i, auxArray[j]]);
+            anim.push([k, auxArray[i]]);
             baseArray[k++] = auxArray[i++];
         }     
         else{
-            anim.push([j, auxArray[i]]);
+            anim.push([k, auxArray[j]]);
             baseArray[k++] = auxArray[j++];
         }    
     }
-
+  
+    // ligne 20 et 21
     while(i <= middleIdx){
         // on remplace la valeur de baseArray à l'index k par celle de l'array auxiliaire(valeurs de base) à l'index i 
         // on push quand même deux fois les valeurs pour les anim

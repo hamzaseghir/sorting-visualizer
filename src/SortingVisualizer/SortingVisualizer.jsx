@@ -14,7 +14,7 @@ function generateArray(min, max, number){
 
 function SortingVisualizer(){
 
-    const [min, max, number] = [1, 500, 10];
+    const [min, max, number] = [1, 500, 12];
     let [values, setValues] = useState([]);
 
     useEffect(() => {
@@ -25,15 +25,21 @@ function SortingVisualizer(){
 
     const mergeSorting = () => {
         const anims = getMergeSortAnim(values);
+        const val = [];
+        for(let j = 2; j < anims.length; j+= 3){
+                console.log(j);
+                val.push(anims[j]);
+        }
+        console.log(val);
+        // console.log(anims);
         for(let i = 0; i < anims.length; i++){
             const arrayValues = document.getElementsByClassName("array-value");
             const colorChange = i % 3 !== 2;
-            // console.log(arrayValues[0].style);
             if(colorChange){
                 const [valueOne, valueTwo] = anims[i];
                 const valueOneStyle = arrayValues[valueOne].style;
                 const valueTwoStyle = arrayValues[valueTwo].style;
-                const color = i % 3 === 0 ? 'red' : 'turquoise';
+                const color = i % 3 === 0 ? 'red' : 'green';
                 setTimeout(() => {
                     valueOneStyle.background = color;
                     valueTwoStyle.background = color;
@@ -42,7 +48,7 @@ function SortingVisualizer(){
             }else{
                 setTimeout(() => {
                     const [valueOne, height] = anims[i];
-                    console.log(valueOne, height);
+                    // console.log(valueOne, height);
                     const valueOneStyle = arrayValues[valueOne].style;
                     valueOneStyle.height = `${height}px`;
                 }, i* 10)
