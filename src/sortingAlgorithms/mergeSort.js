@@ -28,26 +28,35 @@ export function getMergeSortAnim(array){
     return anim;
 }
 
-function mergeSort(baseArray, startIdx, endIdx, anim ){
+// Partie recursive du mergeSort, correspond à la ligne 4 à 6
+function mergeUtil(baseArray, startIdx, endIdx, anim){ 
     if ((startIdx - endIdx) <= 1) return;
     const half = Math.round((startIdx + endIdx) / 2);
+    mergeUtil(baseArray, startIdx, half, half, anim);
+    mergeUtil(baseArray, half+1, endIdx, half, anim);
+    mergeSort(baseArray, startIdx, endIdx, half, anim);
+}
 
-    const arr = [];
+// Peuple l'array d'animation
+function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim ){
+
     let i = startIdx; // first index
     let j = half+1; // second index
     let k = startIdx; // base array index
 
     while(i < half && j < endIdx){
         // valeurs qu'on compare
+        // chgt couleur
+        anim.push([i,j]);
+        // retour au couleur de base
         anim.push([i,j]);
         if(first[i] < second[j]){
             
-            arr[k] = first[i++];
+            baseArray[k] = baseArray[i++];
         }     
         else{
-            arr[k] = second[j++];
-        }
-            
+            baseArray[k] = baseArray[j++];
+        }    
         k++;
     }
 
