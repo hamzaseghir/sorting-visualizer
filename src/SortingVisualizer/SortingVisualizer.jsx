@@ -24,8 +24,32 @@ function SortingVisualizer(){
 
 
     const mergeSorting = () => {
-        const anim = getMergeSortAnim(values);
-        console.log(anim);
+        const anims = getMergeSortAnim(values);
+        for(let i = 0; i < anims.length; i++){
+            const arrayValues = document.getElementsByClassName("array-value");
+            const colorChange = i % 3 !== 2;
+            // console.log(arrayValues[0].style);
+            if(colorChange){
+                const [valueOne, valueTwo] = anims[i];
+                const valueOneStyle = arrayValues[valueOne].style;
+                const valueTwoStyle = arrayValues[valueTwo].style;
+                const color = i % 3 === 0 ? 'red' : 'turquoise';
+                setTimeout(() => {
+                    valueOneStyle.background = color;
+                    valueTwoStyle.background = color;
+                }, i * 10)
+                
+            }else{
+                setTimeout(() => {
+                    const [valueOne, height] = anims[i];
+                    console.log(valueOne, height);
+                    const valueOneStyle = arrayValues[valueOne].style;
+                    valueOneStyle.height = `${height}px`;
+                }, i* 10)
+
+            }
+
+        }
     }
 
     const bubbleSorting = () => {

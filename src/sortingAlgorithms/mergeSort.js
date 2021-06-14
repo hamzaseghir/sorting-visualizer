@@ -26,19 +26,16 @@ export function getMergeSortAnim(array){
     const anim = [];
     // tableau auxiliaire avec valeur de baseArray
     const auxArray = [...array];
-    console.log(auxArray);
     mergeUtil(array, 0, array.length-1, anim, auxArray);
-    console.log(anim);
     return anim;
 }
 
 // Partie recursive du mergeSort, correspond à la ligne 4 à 6
 function mergeUtil(baseArray, startIdx, endIdx, anim, auxArray){ 
-    if ((startIdx == endIdx)) return;
+    if ((startIdx === endIdx)) return;
     const middleIdx = Math.floor((startIdx + endIdx) / 2);
-    console.log(startIdx, endIdx, middleIdx);
     mergeUtil(baseArray, startIdx, middleIdx,  anim, auxArray);
-    //mergeUtil(baseArray, middleIdx+1, endIdx,  anim, auxArray);
+    mergeUtil(baseArray, middleIdx+1, endIdx,  anim, auxArray);
     mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray);
 }
 
@@ -55,22 +52,30 @@ function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
         anim.push([i,j]);
         // retour au couleur de base
         anim.push([i,j]);
+        // on doit effectuer l'animation de swap dans le if else
         if(auxArray[i] < auxArray[j]){
-            
+            anim.push([i, auxArray[j]]);
             baseArray[k++] = auxArray[i++];
         }     
         else{
-
+            anim.push([j, auxArray[i]]);
             baseArray[k++] = auxArray[j++];
         }    
     }
 
     while(i <= middleIdx){
         // on remplace la valeur de baseArray à l'index k par celle de l'array auxiliaire(valeurs de base) à l'index i 
+        // on push quand même deux fois les valeurs pour les anim
+        anim.push([i,i]);
+        anim.push([i,i]);
+        anim.push([k, auxArray[i]])
         baseArray[k++] = auxArray[i++];
     } 
 
     while(j <= endIdx) {
+        anim.push([j,j]);
+        anim.push([j,j]);
+        anim.push([k, auxArray[j]])
         baseArray[k++] = auxArray[j++];
     }
 }
