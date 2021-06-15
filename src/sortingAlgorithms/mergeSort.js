@@ -34,8 +34,8 @@ export function getMergeSortAnim(array){
 function mergeUtil(baseArray, startIdx, endIdx, anim, auxArray){ 
     if ((startIdx === endIdx)) return;
     const middleIdx = Math.floor((startIdx + endIdx) / 2);
-    mergeUtil(baseArray, startIdx, middleIdx,  anim, auxArray);
-    mergeUtil(baseArray, middleIdx+1, endIdx,  anim, auxArray);
+    mergeUtil(auxArray, startIdx, middleIdx,  anim, baseArray);
+    mergeUtil(auxArray, middleIdx+1, endIdx,  anim, baseArray);
     mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray);
 }
 
@@ -48,14 +48,14 @@ function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
     let k = startIdx; // base array index
     // console.log(startIdx, endIdx);
 
-    while(i < middleIdx && j < endIdx){
+    while(i <= middleIdx && j <= endIdx){
         // valeurs qu'on compare
         // chgt couleur
         anim.push([i,j]);
         // retour au couleur de base
         anim.push([i,j]);
         // on doit effectuer l'animation de swap dans le if else
-        if(auxArray[i] < auxArray[j]){
+        if(auxArray[i] <= auxArray[j]){
             anim.push([k, auxArray[i]]);
             baseArray[k++] = auxArray[i++];
         }     
