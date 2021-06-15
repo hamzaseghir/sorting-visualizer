@@ -14,7 +14,7 @@ function generateArray(min, max, number){
 
 function SortingVisualizer(){
 
-    const [min, max, number] = [1, 500, 12];
+    const [min, max, number] = [1, 500, 100];
     let [values, setValues] = useState([]);
 
     useEffect(() => {
@@ -25,13 +25,6 @@ function SortingVisualizer(){
 
     const mergeSorting = () => {
         const anims = getMergeSortAnim(values);
-        const val = [];
-        for(let j = 2; j < anims.length; j+= 3){
-                console.log(j);
-                val.push(anims[j]);
-        }
-        console.log(val);
-        // console.log(anims);
         for(let i = 0; i < anims.length; i++){
             const arrayValues = document.getElementsByClassName("array-value");
             const colorChange = i % 3 !== 2;
@@ -39,7 +32,7 @@ function SortingVisualizer(){
                 const [valueOne, valueTwo] = anims[i];
                 const valueOneStyle = arrayValues[valueOne].style;
                 const valueTwoStyle = arrayValues[valueTwo].style;
-                const color = i % 3 === 0 ? 'red' : 'green';
+                const color = i % 3 === 0 ? 'red' : 'turquoise';
                 setTimeout(() => {
                     valueOneStyle.background = color;
                     valueTwoStyle.background = color;
@@ -48,7 +41,6 @@ function SortingVisualizer(){
             }else{
                 setTimeout(() => {
                     const [valueOne, height] = anims[i];
-                    // console.log(valueOne, height);
                     const valueOneStyle = arrayValues[valueOne].style;
                     valueOneStyle.height = `${height}px`;
                 }, i* 10)
@@ -61,7 +53,6 @@ function SortingVisualizer(){
     const bubbleSorting = () => {
         let sortedArray = values.sort((a,b) => a- b);
         let bubbleSortArray = bubbleSort(values);
-        console.log(arrayAreEqual(sortedArray, bubbleSortArray));
     }
 
     const refreshArray = () => {
@@ -76,7 +67,6 @@ function SortingVisualizer(){
                         className="array-value" 
                         key={index}
                         style={{ height:`${value}px`}}>
-                        {value}       
                         </div>
         })}
         </section>
