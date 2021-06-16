@@ -51,8 +51,15 @@ function SortingVisualizer(){
     }
 
     const bubbleSorting = () => {
-        let sortedArray = values.sort((a,b) => a- b);
-        let bubbleSortArray = bubbleSort(values);
+        const bubbleSortAnim = bubbleSort(values);
+        for(let i = 0; i < bubbleSortAnim.length; i++){
+            const arrayValues = document.getElementsByClassName("array-value");
+            setTimeout(() => {
+                const [value, height] = bubbleSortAnim[i];
+                const valueStyle = arrayValues[value].style;
+                valueStyle.height = `${height}px`;
+            }, i * 10);
+        }
     }
 
     const refreshArray = () => {
