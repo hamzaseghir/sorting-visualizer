@@ -16,16 +16,3 @@ export default function bubbleSort(array){
 function swap(a , b , array){
     [array[a],array[b]] = [array[b], array[a]];
 }
-
-/**
- * export default function bubbleSort(array){
-    for(let i = 0 ; i < array.length ; i++){
-        for(let j = 0; j < array.length - i - 1; j++){
-            if(array[i] > array[j])
-            swap(array[i],array[j]);
-        }
-    }
-    return array;
-}
-
- */
