@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './SortingVisualizer.css';
 import React from 'react';
-import {getMergeSortAnim} from '../sortingAlgorithms/mergeSort';
+import getMergeSortAnim from '../sortingAlgorithms/mergeSort';
 import bubbleSort from '../sortingAlgorithms/bubbleSort';
+import quickSort from '../sortingAlgorithms/quickSort';
 
 function generateArray(min, max, number){
     let array = [];
@@ -14,7 +15,7 @@ function generateArray(min, max, number){
 
 function SortingVisualizer(){
 
-    const [min, max, number] = [1, 500, 100];
+    const [min, max, number] = [5, 500, 10];
     let [values, setValues] = useState([]);
 
     useEffect(() => {
@@ -62,6 +63,16 @@ function SortingVisualizer(){
         }
     }
 
+    const quickSorting = () => {
+        console.log(values);
+        const arr = values.sort( (a,b) => a-b );
+        const quickSortArray = quickSort(values, 0, values.length);
+        console.log(quickSortArray);
+        console.log(arr);
+        // console.log(arrayAreEqual(arr, quickSortArray));
+
+    }
+    
     const refreshArray = () => {
         setValues(generateArray(min,max, number));
     }
@@ -80,7 +91,7 @@ function SortingVisualizer(){
         <div>
             <button onClick={refreshArray}>Nouveau tableau</button>
             <button onClick={mergeSorting}>Merge Sort</button>
-            <button onClick={() => console.log("Quick Sort")}>Quick Sort</button>
+            <button onClick={quickSorting}>Quick Sort</button>
             <button onClick={() => console.log("Heap Sort")}>Heap Sort</button>
             <button onClick={bubbleSorting}>Bubble Sort</button>
         </div>

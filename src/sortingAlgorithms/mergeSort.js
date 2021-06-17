@@ -1,4 +1,4 @@
-export function getMergeSortAnim(array){
+export default function getMergeSortAnim(array){
     const anim = [];
     // tableau auxiliaire avec valeur de baseArray
     const auxArray = [...array];
