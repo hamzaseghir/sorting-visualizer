@@ -10,9 +10,9 @@ function quicksortUtil(array, start, end, anim, pivotAnim){
     if(start < end){
         let p = partitionRandom(array, start, end, anim, pivotAnim)[0];
         // console.log(p);
-        quicksort(array, start, p-1, anim ,pivotAnim);
+        quicksortUtil(array, start, p-1, anim ,pivotAnim);
         // console.log(start, p-1);
-        quicksort(array, p+1, end , anim, pivotAnim);
+        quicksortUtil(array, p+1, end , anim, pivotAnim);
         // console.log(p+1, end );
     }
     return array, anim, pivotAnim;
