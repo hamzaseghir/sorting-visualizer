@@ -66,7 +66,6 @@ function SortingVisualizer(){
 
     const quickSorting = () => {
         const quickSortArray = quickSort(values, 0, values.length);
-        console.log(quickSortArray[0]);
         console.log(quickSortArray);
 
     }
