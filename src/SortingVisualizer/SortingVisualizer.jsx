@@ -4,6 +4,7 @@ import React from 'react';
 import getMergeSortAnim from '../sortingAlgorithms/mergeSort';
 import bubbleSort from '../sortingAlgorithms/bubbleSort';
 import quickSort from '../sortingAlgorithms/quickSort';
+import heapSort from '../sortingAlgorithms/heapSort';
 
 function generateArray(min, max, number){
     let array = [];
@@ -69,6 +70,11 @@ function SortingVisualizer(){
         console.log(quickSortArray);
 
     }
+
+    const heapSorting = () => {
+        const heapSortArray = heapSort(values);
+        console.log(heapSortArray);
+    }
     
     const refreshArray = () => {
         setValues(generateArray(min,max, number));
@@ -89,7 +95,7 @@ function SortingVisualizer(){
             <button onClick={refreshArray}>Nouveau tableau</button>
             <button onClick={mergeSorting}>Merge Sort</button>
             <button onClick={quickSorting}>Quick Sort</button>
-            <button onClick={() => console.log("Heap Sort")}>Heap Sort</button>
+            <button onClick={heapSorting}>Heap Sort</button>
             <button onClick={bubbleSorting}>Bubble Sort</button>
         </div>
     </> 

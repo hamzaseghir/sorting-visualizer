@@ -1,42 +1,51 @@
-// O(n log n) w/ Heap
-// Heap labeled tree  = binary tree such that the key labeling of each node dominates they key labeling of each of its children
-// min-heap = dominate children containing a smaller key
+// max-heap
 export default function heapSort(array) {
-    let arrayLenght = array.lenght;
+    let arrayLenght = array.length;
     let half = Math.floor(arrayLenght/2);
 
-    for(let i = half - 1; i >=0 ; i--){
-        buildHeap(array, arrayLenght, i);
+    for(let i = half - 1; i >= 0 ; i--){
+        sortHeap(array, arrayLenght, i);
     }
 
-    for(let i = n-1; i > 0; i--){
+    for(let i = arrayLenght-1; i > 0; i--){
         swap(0, i, array);
-        buildHeap(array, i, 0);
+        arrayLenght--;
+        sortHeap(array, arrayLenght, 0);
     }
 
     return array;
 }
 
-function buildHeap(array, arrayLenght, i){
-    let largest = i;
-    let leftChild = 2 * i + 1;
-    let rightChild = 2 * i + 2;
+function heapify(array, arrayLenght, parentIndex){
+    let largest = parentIndex;
+    let leftChild = 2 * parentIndex + 1;
+    let rightChild = 2 * parentIndex + 2;
 
     if(leftChild < arrayLenght && array[leftChild] > array[largest]){
-        largest = l;
+        largest = leftChild;
     }
 
     if(rightChild < arrayLenght && array[rightChild] > array[largest]){
         largest = rightChild;
     }
 
-    if(largest != i){
-        swap(i, largest, array);
-        buildHeap(array, arrayLenght, largest);
+    if(largest !== parentIndex){
+        swap(parentIndex, largest, array);
+        sortHeap(array, arrayLenght, largest);
     }
 
 }
-
-function swap(a , b, arr){
-    [arr[a], arr[b]] = [arr[b], arr[a]]
+ 
+   
+function swap(a , b , array){
+    [array[a],array[b]] = [array[b], array[a]];
 }
+
+// function swap(a, b, arr){
+//     let temp = arr[a];
+//     arr[a] = arr[b];
+//     arr[b] = arr[temp]; 
+// }
+
+const unsortedArray = [1, 7, 2, 5, 3, 9, 8];
+console.log(heapSort(unsortedArray));
