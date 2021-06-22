@@ -72,8 +72,15 @@ function SortingVisualizer(){
     }
 
     const heapSorting = () => {
-        const heapSortArray = heapSort(values);
-        console.log(heapSortArray);
+        const heapSortAnim = heapSort(values);
+        for(let i = 0; i < heapSortAnim.length; i++){
+            const arrayValues = document.getElementsByClassName("array-value");
+            setTimeout(() => {
+                const [value, height] = heapSortAnim[i];
+                const valueStyle = arrayValues[value].style;
+                valueStyle.height = `${height}px`;
+            }, i * 3);
+        }
     }
     
     const refreshArray = () => {
