@@ -4,13 +4,13 @@ export default function heapSort(array) {
     let half = Math.floor(arrayLenght/2);
 
     for(let i = half - 1; i >= 0 ; i--){
-        sortHeap(array, arrayLenght, i);
+        heapify(array, arrayLenght, i);
     }
 
     for(let i = arrayLenght-1; i > 0; i--){
         swap(0, i, array);
         arrayLenght--;
-        sortHeap(array, arrayLenght, 0);
+        heapify(array, arrayLenght, 0);
     }
 
     return array;
@@ -31,7 +31,7 @@ function heapify(array, arrayLenght, parentIndex){
 
     if(largest !== parentIndex){
         swap(parentIndex, largest, array);
-        sortHeap(array, arrayLenght, largest);
+        heapify(array, arrayLenght, largest);
     }
 
 }
