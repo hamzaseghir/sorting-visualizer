@@ -22,7 +22,6 @@ function mergeSort(baseArray, startIdx, endIdx, middleIdx, anim, auxArray ){
     let i = startIdx; // first index
     let j = middleIdx+1; // second index
     let k = startIdx; // base array index
-    // console.log(startIdx, endIdx);
 
     while(i <= middleIdx && j <= endIdx){
         // valeurs qu'on compare

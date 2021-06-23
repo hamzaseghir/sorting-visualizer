@@ -26,7 +26,6 @@ function SortingVisualizer(){
 
     const mergeSorting = () => {
         const anims = getMergeSortAnim(values);
-        console.log(anims);
         for(let i = 0; i < anims.length; i++){
             const arrayValues = document.getElementsByClassName("array-value");
             const colorChange = i % 3 !== 2;
