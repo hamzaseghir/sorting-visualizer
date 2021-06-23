@@ -15,7 +15,6 @@ function generateArray(min, max, number){
 }
 
 function SortingVisualizer(){
-
     const [min, max, number] = [5, 500, 100];
     let [values, setValues] = useState([]);
 
@@ -73,6 +72,8 @@ function SortingVisualizer(){
 
     const heapSorting = () => {
         const heapSortAnim = heapSort(values);
+        console.log(values);
+        console.log(heapSortAnim)
         for(let i = 0; i < heapSortAnim.length; i++){
             const arrayValues = document.getElementsByClassName("array-value");
             setTimeout(() => {
