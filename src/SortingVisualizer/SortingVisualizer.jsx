@@ -15,14 +15,13 @@ function generateArray(min, max, number){
 }
 
 function SortingVisualizer(){
-    const [min, max, number] = [5, 500, 100];
+    const [min, max, number] = [5, 500, 20];
     let [values, setValues] = useState([]);
 
     useEffect(() => {
         setValues(generateArray(min, max, number));
 
     }, [min, max, number])
-
 
     const mergeSorting = () => {
         const anims = getMergeSortAnim(values);
@@ -64,8 +63,17 @@ function SortingVisualizer(){
     }
 
     const quickSorting = () => {
-        const quickSortArray = quickSort(values, 0, values.length);
-        console.log(quickSortArray);
+        const quickSortRes = quickSort(values, 0, values.length - 1);
+        const quickSortAnim = quickSortRes[0];
+        console.log(quickSortRes[1]);
+        for(let i = 0; i < quickSortAnim.length; i++){
+            const arrayValues = document.getElementsByClassName("array-value");
+            setTimeout(() => {
+                const [value, height] = quickSortAnim[i];
+                const valueStyle = arrayValues[value].style;
+                valueStyle.height = `${height}px`;
+            }, i * 10);
+        }
 
     }
 
@@ -79,7 +87,7 @@ function SortingVisualizer(){
                 const [value, height] = heapSortAnim[i];
                 const valueStyle = arrayValues[value].style;
                 valueStyle.height = `${height}px`;
-            }, i * 3);
+            }, i * 10);
         }
     }
     
