@@ -14,7 +14,7 @@ function quicksortUtil(array, start, end, anim){
 
 // Hoare partition
 function partition(array, start, end, anim){
-    let pivot = array[start];
+    let pivot = array[end];
     let i = start - 1; // left index
     let j = end + 1; // right index
 
@@ -28,7 +28,7 @@ function partition(array, start, end, anim){
         }while(array[j]> pivot)
 
         if(i >= j)
-            return j;  
+            return j;
         anim.push([i, array[j]]);
         anim.push([j, array[i]]);
         swap(i , j, array);      

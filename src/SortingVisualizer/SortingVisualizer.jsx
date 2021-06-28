@@ -15,7 +15,7 @@ function generateArray(min, max, number){
 }
 
 function SortingVisualizer(){
-    const [min, max, number] = [5, 500, 20];
+    const [min, max, number] = [5, 500, 120];
     let [values, setValues] = useState([]);
 
     useEffect(() => {
