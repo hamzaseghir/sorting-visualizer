@@ -20,7 +20,6 @@ function SortingVisualizer(){
 
     useEffect(() => {
         setValues(generateArray(min, max, number));
-
     }, [min, max, number])
 
     const mergeSorting = () => {
@@ -63,16 +62,39 @@ function SortingVisualizer(){
     }
 
     const quickSorting = () => {
-        const quickSortRes = quickSort(values, 0, values.length - 1);
-        const quickSortAnim = quickSortRes[0];
-        console.log(quickSortRes[1]);
+        const quickSortAnim = quickSort(values, 0, values.length - 1);
+        console.log(quickSortAnim);
         for(let i = 0; i < quickSortAnim.length; i++){
             const arrayValues = document.getElementsByClassName("array-value");
-            setTimeout(() => {
-                const [value, height] = quickSortAnim[i];
-                const valueStyle = arrayValues[value].style;
-                valueStyle.height = `${height}px`;
-            }, i * 10);
+            if(quickSortAnim[i][2] === "swap"){
+                setTimeout(() => {
+                    const [value, height] = quickSortAnim[i];
+                    const valueStyle = arrayValues[value].style;
+                    valueStyle.height = `${height}px`;
+                }, i * 10);
+            }
+            else if(quickSortAnim[i][2] === "pivot"){
+                setTimeout(() => {
+                    const [pivotOne, pivotTwo] = quickSortAnim[i];
+                    const valueStyleOne = arrayValues[pivotOne].style;
+                    const valueStyleTwo = arrayValues[pivotTwo].style;
+                    const color = ['yellow', 'turquoise'];
+                    const bgColor = valueStyleOne.background == color[0] ? color[1] : color[0];
+                    valueStyleOne.background = bgColor;
+                    valueStyleTwo.background = bgColor;
+                }, i * 10);
+            }
+            // else if(quickSortAnim[i][2] === "randomPivot"){
+            //     const [valueOne, valueTwo] = quickSortAnim[i];
+            //     const valueStyleOne = arrayValues[valueOne].style;
+            //     const valueStyleTwo = arrayValues[valueTwo].style;
+            //     setTimeout(() => {
+            //         const color = ['red', 'turquoise'];
+            //         const bgColor = valueStyleOne.background == color[0] ? color[1] : color[0];
+            //         valueStyleOne.background = bgColor;
+            //         valueStyleTwo.background = bgColor;
+            //     }, i * 2);
+            // }   
         }
 
     }

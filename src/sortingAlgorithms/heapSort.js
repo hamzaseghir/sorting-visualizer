@@ -10,8 +10,8 @@ export default function heapSort(array) {
     }
 
     for(let i = arrayLenght-1; i > 0; i--){
-        anim.push([i, array[0], "swap2"]);
-        anim.push([0, array[i], "swap2"]);
+        anim.push([i, array[0]]);
+        anim.push([0, array[i]]);
         swap(0, i, array);      
         arrayLenght--;
         heapify(array, arrayLenght, 0, anim);
@@ -34,8 +34,8 @@ function heapify(array, arrayLenght, parentIndex, anim){
     }
 
     if(largest !== parentIndex){
-        anim.push([parentIndex, array[largest], "swap1"]);
-        anim.push([largest, array[parentIndex], "swap1"]);
+        anim.push([parentIndex, array[largest]]);
+        anim.push([largest, array[parentIndex]]);
         swap(parentIndex, largest, array);
         heapify(array, arrayLenght, largest, anim);
     }
